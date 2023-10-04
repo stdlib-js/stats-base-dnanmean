@@ -22,8 +22,8 @@
 
 var tape = require( 'tape' );
 var proxyquire = require( 'proxyquire' );
-var IS_BROWSER = require( '@stdlib/assert-is-browser/dist' );
-var dnanmean = require( ./'../../dist' );
+var IS_BROWSER = require( '@stdlib/assert-is-browser' );
+var dnanmean = require( './../../../dist' );
 
 
 // VARIABLES //
@@ -47,8 +47,8 @@ tape( 'attached to the main export is a method providing an ndarray interface', 
 });
 
 tape( 'if a native implementation is available, the main export is the native implementation', opts, function test( t ) {
-	var dnanmean = proxyquire( ./'../../dist', {
-		'@stdlib/utils-try-require/dist': tryRequire
+	var dnanmean = proxyquire( './../../../dist', {
+		'@stdlib/utils-try-require': tryRequire
 	});
 
 	t.strictEqual( dnanmean, mock, 'returns expected value' );
@@ -69,8 +69,8 @@ tape( 'if a native implementation is not available, the main export is a JavaScr
 
 	main = require( './../../lib/dnanmean.js' );
 
-	dnanmean = proxyquire( ./'../../dist', {
-		'@stdlib/utils-try-require/dist': tryRequire
+	dnanmean = proxyquire( './../../../dist', {
+		'@stdlib/utils-try-require': tryRequire
 	});
 
 	t.strictEqual( dnanmean, main, 'returns expected value' );
